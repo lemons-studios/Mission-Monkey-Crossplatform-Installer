@@ -1,5 +1,6 @@
 import requests
-
+import os
+import GlobalVariables
 
 def InstallGame():
     pass
@@ -8,6 +9,11 @@ def CheckForUpdates():
     # ChatGPT helped me write this section checking for the latest version
 
     latestBuildNumber = GetLatestBuildNumber()
+    installedBuildNumber = GlobalVariables.InstallBuildFile.readline()
+
+    print(installedBuildNumber)
+    print(latestBuildNumber)
+
     # No more ChatGPT help
 
 
@@ -20,3 +26,6 @@ def GetLatestBuildNumber():
         LatestRepoTag = response.json()
         LatestRelease = LatestRepoTag['tag_name']
         return LatestRelease
+
+
+CheckForUpdates()

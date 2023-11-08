@@ -4,16 +4,15 @@ import DownloadMethods
 import SettingsMethods
 import MainMenu
 import os
-
-
+import GlobalVariables
 
 # First Launch Check
-InstallerPath = "C:/Mission-Monkey"
+InstallerPath = "./Mission-Monkey"
 
 if(os.path.exists(InstallerPath)):
     pass
 else:
     os.mkdir(InstallerPath)
-    SettingsMethods.CreateVersionInfo()
+    open(GlobalVariables.InstallBuildFile)
 
-MainMenu.StartupText()
+SettingsMethods.CreateVersionInfo()

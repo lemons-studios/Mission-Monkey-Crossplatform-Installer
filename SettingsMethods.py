@@ -1,5 +1,5 @@
 import DownloadMethods
+import GlobalVariables
 
+from pathlib import Path
 def CreateVersionInfo():
-    with open(r'C:/MissionMonkey/buildinfo.txt', 'w') as buildInfo:
-        buildInfo.write(DownloadMethods.GetLatestBuildNumber())
