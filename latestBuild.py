@@ -7,5 +7,5 @@ def GetLatestBuildNumber(repoName):
     if response.status_code == 200:
         latestRepoTag = response.json()
         latestRelease = latestRepoTag['tag_name']
-        print(latestRelease)
+        # print(latestRelease)
         return latestRelease

@@ -2,6 +2,7 @@ import platform
 import os
 
 
+
 def installGameHandler():
     match platform.system():
         case 'Windows':
