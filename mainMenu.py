@@ -1,10 +1,10 @@
 from prompt_toolkit import prompt
 from prompt_toolkit import print_formatted_text as printMenu
-
+from latestBuild import GetLatestBuildNumber
 
 def menu():
     # Some help from mister GPT for making the menu code but the rest is mine
-    printMenu("Welcome to the Mission: Monkey cross-platform installer! (Version 0.1)")
+    printMenu(f"Welcome to the Mission: Monkey cross-platform installer! (Version 0.1)")
     printMenu("Select what you would like to do:")
     printMenu("1. Install Mission: Monkey")
     printMenu("2. Check for updates")
@@ -36,6 +36,5 @@ def menu():
             pass
         case 4:
             # Quits the installer
-
             printMenu("Goodbye.")
             exit(0)
