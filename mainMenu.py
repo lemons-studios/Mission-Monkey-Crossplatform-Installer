@@ -1,7 +1,11 @@
 from prompt_toolkit import prompt
 from prompt_toolkit import print_formatted_text as printMenu
 from latestBuild import GetLatestBuildNumber
-import installGame
+import installAndUpdateGame
+from installAndUpdateGame import InstallationInformation
+
+installInfo = InstallationInformation()
+
 def menu():
     # Some help from mister GPT for making the menu code but the rest is mine
     printMenu(f"Welcome to the Mission: Monkey cross-platform installer! (Version 0.1)")
@@ -30,8 +34,8 @@ def menu():
         case 2:
             # Calls the installation method
 
-            print(f"Installing Mission Monkey {GetLatestBuildNumber("Mission-Monkey")}.....")
-            installGame.installGame()
+            print(f"Installing Mission Monkey {installInfo.latestBuildNum}.....")
+            installAndUpdateGame.installGame()
             menu()
         case 3:
             # Checks for any updates by comparing the latest GitHub tag to the build number for the installation
