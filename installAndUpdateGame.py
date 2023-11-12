@@ -47,6 +47,7 @@ def installGame():
     shutil.unpack_archive(installInfo.gameData, installInfo.gameDirectory)
     os.remove(installInfo.gameData)  # Delete the game zip archive after downloading
     # TODO: make a prompt asking the user what to do after the install is done
+    # TODO: Create a shortcut on the desktop of the user account running the application
     clearScreen()
     return
 
