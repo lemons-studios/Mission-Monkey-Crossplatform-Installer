@@ -2,3 +2,4 @@ tqdm~=4.66.1
 console-menu~=0.8.0
 requests~=2.31.0
 prompt-toolkit~=3.0.30
+clear-screen~=0.1.14
