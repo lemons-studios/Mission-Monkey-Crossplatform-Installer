@@ -2,7 +2,7 @@ import os
 import platform
 
 import mainMenu
-from latestBuild import GetLatestBuildNumber
+from miscMethods import GetLatestBuildNumber
 from installAndUpdateGame import InstallationInformation
 
 installInfo = InstallationInformation()

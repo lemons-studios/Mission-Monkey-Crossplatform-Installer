@@ -4,7 +4,7 @@ import shutil
 import requests
 
 from tqdm import tqdm
-from latestBuild import GetLatestBuildNumber, clearScreen
+from miscMethods import GetLatestBuildNumber, clearScreen
 
 
 class InstallationInformation:
