@@ -1,11 +1,10 @@
 import platform
 import os
-
-import requests
-from tqdm import tqdm
-from clear_screen import clear
 import shutil
-from latestBuild import GetLatestBuildNumber
+import requests
+
+from tqdm import tqdm
+from latestBuild import GetLatestBuildNumber, clearScreen
 
 
 class InstallationInformation:
@@ -42,21 +41,29 @@ def installGame():
     progressBar.close()
     if totalSize != 0 and progressBar.n != totalSize:
         print("Something terrible happened. Try downloading again?")
-    print("Extracting game")
 
+    # Extract the downloaded zip file with shutil
+    print("Extracting game")
     shutil.unpack_archive(installInfo.gameData, installInfo.gameDirectory)
     os.remove(installInfo.gameData)  # Delete the game zip archive after downloading
-    clear()
+    # TODO: make a prompt asking the user what to do after the install is done
+    clearScreen()
     return
 
+
 def updateGame():
-    installedBuild = open(f'{installInfo.gameDirectory}/buildInfo.txt').readline(1)
+    # TODO: make a prompt asking the user what to do after the update is done
+    installedBuild = open(f'{installInfo.gameDirectory}/buildInfo.txt').readline()
     if installedBuild != installInfo.latestBuildNum:
         print(f"There is a new version available ({installInfo.latestBuildNum})! ")
+
     else:
         print("You have the latest version of Mission: Monkey installed on your computer")
 
 
+
 def repairInstallation():
     # Delete any files in the installation directory (except for the build info file), and call the installGame method after to download the new version of the game
-    pass
+    # TODO: make a prompt asking the user what to do after the reinstall is done
+    clearScreen()
+
