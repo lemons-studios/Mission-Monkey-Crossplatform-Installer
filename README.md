@@ -4,12 +4,12 @@ This is a simple Python application that installs the latest build of "Mission: 
 
 ## Supported Operating Systems
 - Windows 8 or newer
-- MacOS (Darwin) 10.15 (Cataline) or newer
+- MacOS (Darwin) 10.15 (Catalina) or newer
 - Any modern Linux distribution
 
 ## How to use
 Simply download the latest release and open it! (either from a terminal or from your file explorer)
-
+**It is strongly recommended to run this application in a maximized console window**
 
 ## Development Requirements
 - [Python 3.12 or higher](https://www.python.org/downloads/)

@@ -1,3 +1,4 @@
+import os
 import random
 
 import installAndUpdateGame
@@ -10,7 +11,6 @@ from art import  *
 
 installInfo = InstallationInformation()
 menuStyles = MenuStyes()
-# Art library has a argument that allows random ascii font generation, but I do not like some of the fonts, so this list containing any of the fonts will be used instead
 
 
 def menu():
@@ -31,7 +31,7 @@ def menu():
             else:
                 printMenu("Choose an option between 1 and 5!")
         except ValueError:
-            printMenu("  ")
+            printMenu("")
 
     match choice:  # I love swi- I mean match cases!!
         case 1:
@@ -52,9 +52,60 @@ def menu():
             pass
         case 4:
             # Opens a new menu for settings
-
+            clearScreen()
+            SettingsMenu()
             pass
         case 5:
             # Quits the installer
             clearScreen()
+            tprint("Goodbye", random.choice(menuStyles.AcceptedASCIIFonts))
             exit(0)
+
+
+def SettingsMenu():
+    tprint("Settings", random.choice(menuStyles.AcceptedASCIIFonts))
+    print("______________________________________________________________________________________")
+    printMenu("1. Repair/Reinstall Mission: Monkey")
+    printMenu("2. Uninstall Mission: Monkey")
+    printMenu("3. Back to Main Menu")
+
+    while True:
+        try:
+            choice = int(prompt("Select an option (1-3): "))
+            if 0 <= choice <= 3:
+                break
+            else:
+                printMenu("Choose an option between 1 and 3!")
+        except ValueError:
+            printMenu("")
+    match choice:
+        case 1:
+            installAndUpdateGame.repairInstallation()
+            pass
+        case 2:
+            os.remove(installInfo.gameDirectory)
+            print("game removed!")
+            print("would you like to:")
+            printMenu("1. Go back to Main Menu")
+            printMenu("2. Quit")
+            while True:
+                try:
+                    secondOptionChoice = int(prompt("1-2"))
+                    if 0 <= choice <= 2:
+                        break
+                    else:
+                        printMenu("Choose a value between 1 and 2")
+                except ValueError:
+                    printMenu("")
+                match secondOptionChoice:
+                    case 1:
+                        clearScreen()
+                        menu()
+                    case 2:
+                        clearScreen()
+                        tprint("Goodbye!", random.choice(menuStyles.AcceptedASCIIFonts))
+
+        case 3:
+            clearScreen()
+            menu()
+            pass
