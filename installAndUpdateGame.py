@@ -14,12 +14,11 @@ class InstallationInformation:
     gameData = None
 
     if platform.system() != "Windows":
-        gameData = os.path.join(os.environ['USERPROFILE'], "Mission-Monkey", "game.zip")
         gameDirectory = os.path.join(os.path.expanduser("~"), "Mission-Monkey")
     else:
         gameDirectory = os.path.join(os.environ['USERPROFILE'], "Mission-Monkey")
-        gameData = os.path.join(os.path.expanduser("~"), "Mission-Monkey", "game.zip")
 
+    gameData = os.path.join(gameDirectory, 'game.zip')
     buildInfo = f'{gameDirectory}/buildInfo.txt'
     downloadURL = f"https://github.com/lemons-studios/Mission-Monkey/releases/download/{latestBuildNum}/{latestBuildNum}-{clientPlatform}.zip"
 
