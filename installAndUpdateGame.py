@@ -7,14 +7,20 @@ from clear_screen import clear
 import shutil
 from latestBuild import GetLatestBuildNumber
 
+
 class InstallationInformation:
     latestBuildNum = GetLatestBuildNumber("Mission-Monkey")
     clientPlatform = platform.system()
     gameDirectory = None
+    gameData = None
+
     if platform.system() != "Windows":
+        gameData = os.path.join(os.environ['USERPROFILE'], "Mission-Monkey", "game.zip")
         gameDirectory = os.path.join(os.path.expanduser("~"), "Mission-Monkey")
     else:
         gameDirectory = os.path.join(os.environ['USERPROFILE'], "Mission-Monkey")
+        gameData = os.path.join(os.path.expanduser("~"), "Mission-Monkey", "game.zip")
+
     buildInfo = f'{gameDirectory}/buildInfo.txt'
     downloadURL = f"https://github.com/lemons-studios/Mission-Monkey/releases/download/{latestBuildNum}/{latestBuildNum}-{clientPlatform}.zip"
 
@@ -36,19 +42,12 @@ def installGame():
     progressBar.close()
     if totalSize != 0 and progressBar.n != totalSize:
         print("Something terrible happened. Try downloading again?")
-    print("Extracing game")
-    gameData = None
-    if platform.system() != 'Windows':
-        gameData = os.path.join(os.environ['USERPROFILE'], "Mission-Monkey", "game.zip")
-        pass
-    else:
-        gameData = os.path.join(os.path.expanduser("~"), "Mission-Monkey", "game.zip")
-        pass
-    shutil.unpack_archive(gameData, installInfo.gameDirectory)
-    os.remove(gameData)  # Delete the game zip archive after downloading
+    print("Extracting game")
+
+    shutil.unpack_archive(installInfo.gameData, installInfo.gameDirectory)
+    os.remove(installInfo.gameData)  # Delete the game zip archive after downloading
     clear()
     return
-
 
 def updateGame():
     installedBuild = open(f'{installInfo.gameDirectory}/buildInfo.txt').readline(1)
