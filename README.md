@@ -6,9 +6,13 @@ This is a simple Python application that installs the latest build of "Mission: 
 - Windows 8 or newer
 - MacOS (Darwin) 10.15 (Catalina) or newer
 - Any modern Linux distribution
+  
+> **Note**  
+> This installer supports versions above 0.3 and above, as it is the first crossplatform release
 
 ## How to use
 Simply download the latest release and open it! (either from a terminal or from your file explorer)
+
 **It is strongly recommended to run this application in a maximized console window**
 
 ## Development Requirements
