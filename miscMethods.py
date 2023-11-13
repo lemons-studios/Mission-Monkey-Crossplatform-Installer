@@ -1,6 +1,8 @@
+import random
+
 import requests
 import platform, os
-
+import shutil
 
 def GetLatestBuildNumber(repoName):
     repo = f'https://api.github.com/repos/Lemons-Studios/{repoName}/releases/latest'
@@ -19,6 +21,12 @@ def clearScreen():
         os.system('clear')
     else:
         os.system('cls')
+
+def deleteDirectory(dir):
+    try:
+        shutil.rmtree(dir)
+    except Exception as error:
+        print(f"Error: {error}. Please submit an issue on the GitHub repository if you keep encountering this error")
 
 class MenuStyes:
     AcceptedASCIIFonts = \

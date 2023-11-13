@@ -1,20 +1,22 @@
 import os
+import platform
 import random
-
 import installAndUpdateGame
+import subprocess
 
 from prompt_toolkit import prompt
 from prompt_toolkit import print_formatted_text as printMenu
 from installAndUpdateGame import InstallationInformation
-from miscMethods import clearScreen, MenuStyes
+from miscMethods import clearScreen, MenuStyes, deleteDirectory
 from art import  *
+
 
 installInfo = InstallationInformation()
 menuStyles = MenuStyes()
 
 
 def menu():
-    tprint("Mission: Monkey Installer", random.choice(menuStyles.AcceptedASCIIFonts))
+    tprint("Mission: Monkey Installer", random.choice(menuStyles.AcceptedASCIIFonts)) # Picks a random font from the menuStyles class (The random font being a list of ASCII fonts that I like)
     print("______________________________________________________________________________________")
     print("Select what you would like to do:")
     printMenu("1. Launch Mission: Monkey")
@@ -22,6 +24,7 @@ def menu():
     printMenu("3. Check for updates")
     printMenu("4. Settings") # Contains Uninstall game method and repair game method for now
     printMenu("5. Quit")
+
 
     while True:
         try:
@@ -37,12 +40,22 @@ def menu():
         case 1:
             # Launches game if it exists
 
-            pass
+            if platform.system() == 'Windows':
+                executable = (os.path.join(installInfo.gameDirectory, 'Mission Monkey.exe'))
+            elif platform.system() == 'Darwin':  # MacOS
+                executable =(os.path.join(installInfo.gameDirectory, 'Mission Monkey.app'))
+            elif platform.system() == 'Linux':
+                executable = (os.path.join(installInfo.gameDirectory, 'Mission Monkey.x86_64'))
+            
+            if(os.path.exists(executable)):
+                subprocess.Popen(executable)
+            else:
+                print("Error: Executable not found! please repair your installation!")
         case 2:
             # Calls the installation method
             clearScreen()
             print(f"Installing Mission Monkey {installInfo.latestBuildNum}.....")
-            installAndUpdateGame.installGame()
+            installAndUpdateGame.installGame(installInfo.downloadURL)
             menu()
         case 3:
             # Checks for any updates by comparing the latest GitHub tag to the build number for the installation
@@ -54,7 +67,7 @@ def menu():
             # Opens a new menu for settings
             clearScreen()
             SettingsMenu()
-            pass
+            menu()
         case 5:
             # Quits the installer
             clearScreen()
@@ -78,34 +91,19 @@ def SettingsMenu():
                 printMenu("Choose an option between 1 and 3!")
         except ValueError:
             printMenu("")
+
     match choice:
         case 1:
+            # Calls the repair install method
             installAndUpdateGame.repairInstallation()
+            print("Installation Repaired!")
             pass
         case 2:
-            os.remove(installInfo.gameDirectory)
-            print("game removed!")
-            print("would you like to:")
-            printMenu("1. Go back to Main Menu")
-            printMenu("2. Quit")
-            while True:
-                try:
-                    secondOptionChoice = int(prompt("1-2"))
-                    if 0 <= choice <= 2:
-                        break
-                    else:
-                        printMenu("Choose a value between 1 and 2")
-                except ValueError:
-                    printMenu("")
-                match secondOptionChoice:
-                    case 1:
-                        clearScreen()
-                        menu()
-                    case 2:
-                        clearScreen()
-                        tprint("Goodbye!", random.choice(menuStyles.AcceptedASCIIFonts))
+            # Deletes the Mission: Monkey installation directory (~/Mission-Monkey)
+            clearScreen()
+            deleteDirectory(installInfo.gameDirectory)
+            print("Game Uninstalled!")
 
         case 3:
+            # Go back to main menu
             clearScreen()
-            menu()
-            pass
