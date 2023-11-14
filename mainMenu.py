@@ -3,6 +3,8 @@ import platform
 import random
 import installAndUpdateGame
 import subprocess
+import math
+
 
 from prompt_toolkit import prompt
 from prompt_toolkit import print_formatted_text as printMenu
@@ -15,7 +17,8 @@ installInfo = InstallationInformation()
 menuStyles = MenuStyles()
 
 # Obligatory assignment requirement line (The project needs to use operators)
-FifthOptionName = str(int((5/5 + 4 ** 2 - 2) % 4 + 2 * 2 - 5 + 3))
+# Thanks to ChakornK for making the math to get to 5 even more complicated than before
+FifthOptionName = str(int((math.sin(math.radians(30)) * 2 * math.sqrt(3**2 + 4**2) / 5 + 4**2 - 2) % 4 + 2*2 - 5 + 729**(1/3) - 5))
 
 def menu():
     tprint("Mission: Monkey Installer", random.choice(menuStyles.AcceptedASCIIFonts)) # Picks a random font from the menuStyles class (The random font being a list of ASCII fonts that I like)
@@ -101,7 +104,7 @@ def SettingsMenu():
             print("Installation Repaired!")
             pass
         case 2:
-            # Deletes the Mission: Monkey installation directory (~/Mission-Monkey)
+            # Deletes the Mission: Monkey installation directory (~/Mission-Monkey OR %HOMEUSER%/Mission-Monkey)
             clearScreen()
             deleteDirectory(installInfo.gameDirectory)
             print("Game Uninstalled!")
