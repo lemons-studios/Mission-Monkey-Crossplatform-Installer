@@ -20,6 +20,13 @@ Simply download the latest release and open it! (either from a terminal or from 
 - [PyCharm (Recommended)](https://www.jetbrains.com/pycharm/)
 - Install 3rd Party libraries & pipenv
     ```sh
-    pip install pipenv
+    pip install asdf pipenv
     pip install -r requirements.txt
     ```
+- Create new pipenv environment or let pycharm make it for you
+  ```sh
+  cd MissionMonkeyInstaller-Cli
+  pipenv install
+  ```
+  > **Note**
+  > This application only runs in the command prompt/consoles of operating systems, not in any IDE consoles
