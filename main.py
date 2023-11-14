@@ -7,9 +7,9 @@ from installAndUpdateGame import InstallationInformation
 
 installInfo = InstallationInformation()
 
-# I would have LOVED to move this to miscMethods, but the moment i did, the entire project decided to kill itself, so these files remain here forever now I guess
+# I would have LOVED to move this to miscMethods, but the moment I did, the entire project decided to kill itself, so these files remain here forever now I guess
 def firstLaunch():
-    os.mkdir(installInfo.gameDirectory, 777)
+    os.mkdir(installInfo.gameDirectory)
     with open(installInfo.buildInfo, 'w') as latestBuild:
         latestBuild.write(GetLatestBuildNumber("Mission-Monkey"))
 

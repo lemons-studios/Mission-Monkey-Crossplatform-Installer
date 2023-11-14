@@ -28,7 +28,7 @@ def deleteDirectory(dir):
     except Exception as error:
         print(f"Error: {error}. Please submit an issue on the GitHub repository if you keep encountering this error")
 
-class MenuStyes:
+class MenuStyles:
     AcceptedASCIIFonts = \
         [
             "3-d", "64f1", "6x10", "6x9", "advenger", "amcaa01",

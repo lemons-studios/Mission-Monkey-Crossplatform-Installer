@@ -7,12 +7,12 @@ import subprocess
 from prompt_toolkit import prompt
 from prompt_toolkit import print_formatted_text as printMenu
 from installAndUpdateGame import InstallationInformation
-from miscMethods import clearScreen, MenuStyes, deleteDirectory
+from miscMethods import clearScreen, MenuStyles, deleteDirectory
 from art import  *
 
 
 installInfo = InstallationInformation()
-menuStyles = MenuStyes()
+menuStyles = MenuStyles()
 
 
 def menu():
@@ -46,7 +46,7 @@ def menu():
                 executable =(os.path.join(installInfo.gameDirectory, 'Mission Monkey.app'))
             elif platform.system() == 'Linux':
                 executable = (os.path.join(installInfo.gameDirectory, 'Mission Monkey.x86_64'))
-            
+
             if(os.path.exists(executable)):
                 subprocess.Popen(executable)
             else:

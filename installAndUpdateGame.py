@@ -1,13 +1,12 @@
 import platform
 import os
-import glob
 import shutil
 import requests
 
 from tqdm import tqdm
-from miscMethods import GetLatestBuildNumber, clearScreen, deleteDirectory, MenuStyes
+from miscMethods import GetLatestBuildNumber, clearScreen, deleteDirectory, MenuStyles
 
-menuStyles = MenuStyes()
+menuStyles = MenuStyles()
 
 
 class InstallationInformation:
@@ -33,7 +32,7 @@ def installGame(Url):
     # Part of this download code was borrowed from StackOverflow (https://stackoverflow.com/questions/37573483/progress-bar-while-download-file-over-http-with-requests)
     # The user might try to install the game after uninstalling without relaunching the installer application, so check if the installation directory exists before the installation begins
     if not os.path.exists(installInfo.gameDirectory) or not os.path.exists(installInfo.buildInfo):
-        os.mkdir(installInfo.gameDirectory, 777)
+        os.mkdir(installInfo.gameDirectory)
         with open(installInfo.buildInfo, 'w') as latestBuild:
             latestBuild.write(GetLatestBuildNumber("Mission-Monkey"))
 
@@ -61,17 +60,20 @@ def installGame(Url):
 
 def updateGame():
     # TODO: make a prompt asking the user what to do after the update is done
-    installedBuild = open(f'{installInfo.gameDirectory}/buildInfo.txt').readline()
-    if installedBuild != installInfo.latestBuildNum:
-        print(f"There is a new version available ({installInfo.latestBuildNum})! ")
-        deleteDirectory(installInfo.gameDirectory)
+    if os.path.exists(installInfo.gameDirectory) and os.path.exists(installInfo.buildInfo):
+        installedBuild = open(f'{installInfo.gameDirectory}/buildInfo.txt').readline()
+        if installedBuild != installInfo.latestBuildNum:
+            print(f"There is a new version available ({installInfo.latestBuildNum})! ")
+            deleteDirectory(installInfo.gameDirectory)
 
-        os.mkdir(installInfo.gameDirectory, 777)
-        with open(installInfo.buildInfo, 'w') as latestBuild:
-            latestBuild.write(installInfo.latestBuildNum)
-        installGame(installInfo.downloadURL)
+            os.mkdir(installInfo.gameDirectory)
+            with open(installInfo.buildInfo, 'w') as latestBuild:
+                latestBuild.write(installInfo.latestBuildNum)
+            installGame(installInfo.downloadURL)
+        else:
+            print("You have the latest version of Mission: Monkey installed on your computer")
     else:
-        print("You have the latest version of Mission: Monkey installed on your computer")
+        print("Error: Game not installed. Please install the game first!")
 
 
 def repairInstallation():
@@ -80,10 +82,9 @@ def repairInstallation():
     with open(installInfo.buildInfo) as buildInfo:
         installedVersion = buildInfo.readline()
     deleteDirectory(installInfo.gameDirectory)
-    os.mkdir(installInfo.gameDirectory, 777)
+    os.mkdir(installInfo.gameDirectory)
     with open(installInfo.buildInfo, 'w') as previousBuild:
         previousBuild.write(installedVersion)
 
-    installGame(
-        f"https://github.com/lemons-studios/Mission-Monkey/releases/download/{installedVersion}/{installedVersion}-{installInfo.clientPlatform}.zip")
+    installGame( f"https://github.com/lemons-studios/Mission-Monkey/releases/download/{installedVersion}/{installedVersion}-{installInfo.clientPlatform}.zip")
     clearScreen()
