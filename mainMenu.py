@@ -3,7 +3,6 @@ import platform
 import random
 import installAndUpdateGame
 import subprocess
-import math
 
 from prompt_toolkit import prompt
 from prompt_toolkit import print_formatted_text as printMenu
@@ -16,8 +15,7 @@ installInfo = InstallationInformation()
 menuStyles = MenuStyles()
 
 # Obligatory assignment requirement line (The project needs to use operators)
-# math.trunc removes the decimal place from number calculations
-FifthOptionName = str(math.trunc((5/5 + 4 ** 2 - 2) % 4 + 2 * 2 - 5 + 3))
+FifthOptionName = str(int((5/5 + 4 ** 2 - 2) % 4 + 2 * 2 - 5 + 3))
 
 def menu():
     tprint("Mission: Monkey Installer", random.choice(menuStyles.AcceptedASCIIFonts)) # Picks a random font from the menuStyles class (The random font being a list of ASCII fonts that I like)
