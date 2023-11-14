@@ -20,7 +20,7 @@ menuStyles = MenuStyles()
 # Thanks to ChakornK for making the math to get to 5 even more complicated than before
 FifthOptionName = str(int((math.sin(math.radians(30)) * 2 * math.sqrt(3**2 + 4**2) / 5 + 4**2 - 2) % 4 + 2*2 - 5 + 729**(1/3) - 5))
 
-def menu():
+def mainMenu():
     tprint("Mission: Monkey Installer", random.choice(menuStyles.AcceptedASCIIFonts)) # Picks a random font from the menuStyles class (The random font being a list of ASCII fonts that I like)
     print("______________________________________________________________________________________")
     print("Select what you would like to do:")
@@ -61,18 +61,18 @@ def menu():
             clearScreen()
             print(f"Installing Mission Monkey {installInfo.latestBuildNum}.....")
             installAndUpdateGame.installGame(installInfo.downloadURL)
-            menu()
+            mainMenu()
         case 3:
             # Checks for any updates by comparing the latest GitHub tag to the build number for the installation
             clearScreen()
             installAndUpdateGame.updateGame()
-            menu()
+            mainMenu()
             pass
         case 4:
             # Opens a new menu for settings
             clearScreen()
-            SettingsMenu()
-            menu()
+            settingsMenu()
+            mainMenu()
         case 5:
             # Quits the installer
             clearScreen()
@@ -80,7 +80,7 @@ def menu():
             exit(0)
 
 
-def SettingsMenu():
+def settingsMenu():
     tprint("Settings", random.choice(menuStyles.AcceptedASCIIFonts))
     print("______________________________________________________________________________________")
     printMenu("1. Repair/Reinstall Mission: Monkey")

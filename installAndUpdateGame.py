@@ -4,13 +4,13 @@ import shutil
 import requests
 
 from tqdm import tqdm
-from miscMethods import GetLatestBuildNumber, clearScreen, deleteDirectory, MenuStyles
+from miscMethods import getLatestTag, clearScreen, deleteDirectory, MenuStyles
 
 menuStyles = MenuStyles()
 
 
 class InstallationInformation:
-    latestBuildNum = GetLatestBuildNumber("Mission-Monkey")
+    latestBuildNum = getLatestTag("Mission-Monkey")
     clientPlatform = platform.system()
     gameDirectory = None
     gameData = None
@@ -33,7 +33,7 @@ def installGame(Url):
     if not os.path.exists(installInfo.gameDirectory) or not os.path.exists(installInfo.buildInfo):
         os.mkdir(installInfo.gameDirectory)
         with open(installInfo.buildInfo, 'w') as latestBuild:
-            latestBuild.write(GetLatestBuildNumber("Mission-Monkey"))
+            latestBuild.write(getLatestTag("Mission-Monkey"))
     # This download + progressbar code was borrowed from StackOverflow (https://stackoverflow.com/questions/37573483/progress-bar-while-download-file-over-http-with-requests)
     # Download game and show progress with tqdm
     response = requests.get(Url, stream=True)

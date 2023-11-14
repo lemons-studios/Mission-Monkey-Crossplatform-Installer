@@ -1,10 +1,8 @@
-import random
-
 import requests
 import platform, os
 import shutil
 
-def GetLatestBuildNumber(repoName):
+def getLatestTag(repoName):
     repo = f'https://api.github.com/repos/Lemons-Studios/{repoName}/releases/latest'
     headers = {'Accept': 'application/vnd.github.v3+json'}
     response = requests.get(repo, headers=headers)

@@ -2,7 +2,7 @@ import os
 import platform
 
 import mainMenu
-from miscMethods import GetLatestBuildNumber, clearScreen
+from miscMethods import getLatestTag, clearScreen
 from installAndUpdateGame import InstallationInformation
 
 installInfo = InstallationInformation()
@@ -11,11 +11,11 @@ installInfo = InstallationInformation()
 def firstLaunch():
     os.mkdir(installInfo.gameDirectory)
     with open(installInfo.buildInfo, 'w') as latestBuild:
-        latestBuild.write(GetLatestBuildNumber("Mission-Monkey"))
+        latestBuild.write(getLatestTag("Mission-Monkey"))
 
 
 if not os.path.exists(installInfo.gameDirectory) or not os.path.exists(installInfo.buildInfo):
     firstLaunch()
 
 clearScreen()
-mainMenu.menu()
+mainMenu.mainMenu()
