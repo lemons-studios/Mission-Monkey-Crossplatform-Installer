@@ -16,7 +16,7 @@ Simply download the latest release and open it! (either from a terminal or from 
 **It is strongly recommended to run this application in a maximized console window**
 
 ## Development Requirements
-- [Python 3.12 or higher](https://www.python.org/downloads/)
+- [Python 3](https://www.python.org/downloads/) [With Pip](https://pip.pypa.io/en/stable/installation/#get-pip-py)
 - [PyCharm (Recommended)](https://www.jetbrains.com/pycharm/)
 - Install 3rd Party libraries & pipenv
     ```sh
