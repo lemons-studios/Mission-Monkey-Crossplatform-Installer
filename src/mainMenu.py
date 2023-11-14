@@ -21,13 +21,14 @@ menuStyles = MenuStyles()
 FifthOptionName = str(int((math.sin(math.radians(30)) * 2 * math.sqrt(3**2 + 4**2) / 5 + 4**2 - 2) % 4 + 2*2 - 5 + 729**(1/3) - 5))
 
 def mainMenu():
+    print(menuStyles.asciiMonkey.readlines())
     tprint("Mission: Monkey Installer", random.choice(menuStyles.AcceptedASCIIFonts)) # Picks a random font from the menuStyles class (The random font being a list of ASCII fonts that I like)
     print("______________________________________________________________________________________")
     print("Select what you would like to do:")
     printMenu("1. Launch Mission: Monkey")
     printMenu("2. Install Mission: Monkey")
     printMenu("3. Check for updates")
-    printMenu("4. Settings") # Contains Uninstall game method and repair game method for now
+    printMenu("4. Settings")  # Contains Uninstall game method and repair game method for now
     printMenu(FifthOptionName + ". Quit")
 
 
