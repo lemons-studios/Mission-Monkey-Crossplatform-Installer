@@ -29,13 +29,13 @@ installInfo = InstallationInformation()
 
 
 def installGame(Url):
-    # Part of this download code was borrowed from StackOverflow (https://stackoverflow.com/questions/37573483/progress-bar-while-download-file-over-http-with-requests)
     # The user might try to install the game after uninstalling without relaunching the installer application, so check if the installation directory exists before the installation begins
     if not os.path.exists(installInfo.gameDirectory) or not os.path.exists(installInfo.buildInfo):
         os.mkdir(installInfo.gameDirectory)
         with open(installInfo.buildInfo, 'w') as latestBuild:
             latestBuild.write(GetLatestBuildNumber("Mission-Monkey"))
-
+    # This download + progressbar code was borrowed from StackOverflow (https://stackoverflow.com/questions/37573483/progress-bar-while-download-file-over-http-with-requests)
+    # Download game and show progress with tqdm
     response = requests.get(Url, stream=True)
     totalSize = int(response.headers.get('content-length'), 0)
     blockSize = 1024  # 1 Kilobyte
@@ -52,6 +52,11 @@ def installGame(Url):
     print("Extracting game")
     shutil.unpack_archive(installInfo.gameData, installInfo.gameDirectory)
     os.remove(installInfo.gameData)  # Delete the game zip archive after downloading
+
+    # If on Linux, give the game executable the permissions to run itself
+    if platform.system() == 'Linux':
+        os.system(f"chmod 777 ~/Mission-Monkey/Mission-Monkey.x86_64")
+
     # TODO: make a prompt asking the user what to do after the install is done
     # TODO: Create a shortcut on the desktop of the user account running the application
     clearScreen()
@@ -86,5 +91,6 @@ def repairInstallation():
     with open(installInfo.buildInfo, 'w') as previousBuild:
         previousBuild.write(installedVersion)
 
-    installGame( f"https://github.com/lemons-studios/Mission-Monkey/releases/download/{installedVersion}/{installedVersion}-{installInfo.clientPlatform}.zip")
+    installGame(
+        f"https://github.com/lemons-studios/Mission-Monkey/releases/download/{installedVersion}/{installedVersion}-{installInfo.clientPlatform}.zip")
     clearScreen()
