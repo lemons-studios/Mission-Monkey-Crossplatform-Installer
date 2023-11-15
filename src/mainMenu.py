@@ -5,24 +5,26 @@ import installAndUpdateGame
 import subprocess
 import math
 
-
 from prompt_toolkit import prompt
 from prompt_toolkit import print_formatted_text as printMenu
 from installAndUpdateGame import InstallationInformation
 from miscMethods import clearScreen, MenuStyles, deleteDirectory
-from art import  *
-
+from art import *
 
 installInfo = InstallationInformation()
 menuStyles = MenuStyles()
 
 # Obligatory assignment requirement line (The project needs to use operators)
 # Thanks to ChakornK for making the math to get to 5 even more complicated than before
-FifthOptionName = str(int((math.sin(math.radians(30)) * 2 * math.sqrt(3**2 + 4**2) / 5 + 4**2 - 2) % 4 + 2*2 - 5 + 729**(1/3) - 5))
+FifthOptionName = str(
+    int((math.sin(math.radians(30)) * 2 * math.sqrt(3 ** 2 + 4 ** 2) / 5 + 4 ** 2 - 2) % 4 + 2 * 2 - 5 + 729 ** (
+                1 / 3) - 5))
+
 
 def mainMenu():
     print(menuStyles.asciiMonkey.readlines())
-    tprint("Mission: Monkey Installer", random.choice(menuStyles.AcceptedASCIIFonts)) # Picks a random font from the menuStyles class (The random font being a list of ASCII fonts that I like)
+    tprint("Mission: Monkey Installer", random.choice(
+        menuStyles.AcceptedASCIIFonts))  # Picks a random font from the menuStyles class (The random font being a list of ASCII fonts that I like)
     print("______________________________________________________________________________________")
     print("Select what you would like to do:")
     printMenu("1. Launch Mission: Monkey")
@@ -30,7 +32,6 @@ def mainMenu():
     printMenu("3. Check for updates")
     printMenu("4. Settings")  # Contains Uninstall game method and repair game method for now
     printMenu(FifthOptionName + ". Quit")
-
 
     while True:
         try:
@@ -49,11 +50,11 @@ def mainMenu():
             if platform.system() == 'Windows':
                 executable = (os.path.join(installInfo.gameDirectory, 'Mission Monkey.exe'))
             elif platform.system() == 'Darwin':  # MacOS
-                executable =(os.path.join(installInfo.gameDirectory, 'Mission Monkey.app'))
+                executable = (os.path.join(installInfo.gameDirectory, 'Mission Monkey.app'))
             elif platform.system() == 'Linux':
                 executable = (os.path.join(installInfo.gameDirectory, 'Mission Monkey.x86_64'))
 
-            if(os.path.exists(executable)):
+            if (os.path.exists(executable)):
                 subprocess.Popen(executable)
             else:
                 print("Error: Executable not found! please repair your installation!")
