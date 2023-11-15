@@ -43,7 +43,7 @@ git clone https://github.com/lemons-studios/MissionMonkeyInstaller-cli.git
 cd MissionMonkeyInstaller-cli
 pip install -r requirements.txt
 pip install pyinstaller
-pyinstaller --onefile src/main.py
+pyinstaller --onefile --icon=MissionMonkeyInstallerIcon.ico src/main.py
 ```
 
 final builds are located in dist/
