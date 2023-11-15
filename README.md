@@ -1,4 +1,4 @@
-
+<img src="https://cdn.discordapp.com/attachments/1154895197470208112/1174221553681039441/MissionMonkeyInstallerIcon.png?ex=6566ce0a&is=6554590a&hm=20963ecdc0340e1d26f533f4c96849382829cb2da9ece39c9c42fb0e93e9fa9b&">
 
 # Mission: Monkey Cross-Platform CLI installer
 
