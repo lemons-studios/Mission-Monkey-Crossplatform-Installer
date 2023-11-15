@@ -22,7 +22,6 @@ FifthOptionName = str(
 
 
 def mainMenu():
-    print(menuStyles.asciiMonkey.readlines())
     tprint("Mission: Monkey Installer", random.choice(
         menuStyles.AcceptedASCIIFonts))  # Picks a random font from the menuStyles class (The random font being a list of ASCII fonts that I like)
     print("______________________________________________________________________________________")
