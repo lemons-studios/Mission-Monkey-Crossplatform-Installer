@@ -19,7 +19,7 @@ Simply download the latest release and open it! (either from a terminal or from 
 
 
 ## 🛠️ Development Requirements
-- [Python 3](https://www.python.org/downloads/) [With Pip](https://pip.pypa.io/en/stable/installation/#get-pip-py)
+- [Python 3.8 or higher](https://www.python.org/downloads/) [With Pip](https://pip.pypa.io/en/stable/installation/#get-pip-py)
 - [PyCharm (Recommended)](https://www.jetbrains.com/pycharm/)
 - Install 3rd Party libraries & pipenv
     ```sh
@@ -36,7 +36,10 @@ Simply download the latest release and open it! (either from a terminal or from 
 
 
 ## 🏗️ Build from source
-run the following commands to build from source:
+> **Note**
+> You must have Python 3.8 with pip to be able to build from source
+ 
+Run the following commands to build from source:
 
 ```sh
 git clone https://github.com/lemons-studios/MissionMonkeyInstaller-cli.git
