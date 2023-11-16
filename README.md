@@ -13,8 +13,19 @@ This is a simple Python application that installs the latest build of "Mission: 
 > This installer supports versions above 0.3 and above, as it is the first crossplatform release
 
 ## 🚀 How to use
-Simply download the latest release and open it! (either from a terminal or from your file explorer)
+### 🪟Windows
+- Simply just open the executable!
 
+### 🐧Linux & 🍎 MacOS
+- Download the file
+- Make the file executable
+  - You can either do this in your desktop environment or run the following command into your terminal (assuming that the terminal is in the directory the executable is found in:
+    ```sh
+    chmod 777 ./MissionMonkeyInstaller-{OperatingSystemHere] 
+    ```
+    > **Note**
+    > You can hit the tab key while typing in the terminal for the filename/command to autocomplete
+    
 **It is strongly recommended to run this application in a maximized console window**
 
 
