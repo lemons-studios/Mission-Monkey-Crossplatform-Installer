@@ -21,7 +21,7 @@ This is a simple Python application that installs the latest build of "Mission: 
 - Make the file executable
   - You can either do this in your desktop environment or run the following command into your terminal (assuming that the terminal is in the directory the executable is found in:
     ```sh
-    chmod 777 ./MissionMonkeyInstaller-{OperatingSystemHere] 
+    chmod 777 ./MissionMonkeyInstaller-{OperatingSystemHere} 
     ```
     > **Note**
     > You can hit the tab key while typing in the terminal for the filename/command to autocomplete
